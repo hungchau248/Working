@@ -1,5 +1,5 @@
 #ifndef REGMONITOR_H
 #define REGMONITOR_H
-int RegMonitor(const char*, const char*);
-
+DWORD WINAPI RegMon();
+int RegMonitor(LPVOID);
 #endif

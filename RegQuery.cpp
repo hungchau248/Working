@@ -91,7 +91,7 @@ int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMa
             if (retCode == ERROR_SUCCESS) 
             {
                 _tprintf(TEXT("(%d) %s\n"), i+1, achKey);
-                if(nCount && (cSubKeys - 1 == i)){
+                if(aft && nCount && (cSubKeys - 1 == i)){
             		printf("Key added: %s\n", achKey);
 				}
             }
@@ -136,7 +136,7 @@ int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMa
 					_tprintf(TEXT("|-Value Type: %s\n"), lpValueType);
 					_tprintf(TEXT("|-Value Data: %s\n"), lpValueData);
 					_tprintf(TEXT("\n"));
-					if((cValues >= *nValues) && (cValues - 1 == i)){
+					if(aft && (cValues >= *nValues) && (cValues - 1 == i)){
 						_tprintf(TEXT("Value Name added: %s\n"), achValue);
 						_tprintf(TEXT("Value Data added: %s\n"), lpValueData);
 					} 
