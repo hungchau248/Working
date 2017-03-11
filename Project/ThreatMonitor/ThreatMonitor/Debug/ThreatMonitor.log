@@ -1,0 +1,19 @@
+﻿  RegQuery.cpp
+c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(80): warning C4018: '<': signed/unsigned mismatch
+c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(116): warning C4018: '<': signed/unsigned mismatch
+c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(142): warning C4018: '>=': signed/unsigned mismatch
+c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(98): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'TCHAR *'
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(98): note: consider using '%ls' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(98): note: consider using '%lls' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(98): note: consider using '%Ls' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(98): note: consider using '%ws' in the format string
+c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(140): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(140): note: consider using '%hs' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(140): note: consider using '%Ts' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(140): note: consider defining _CRT_STDIO_ISO_WIDE_SPECIFIERS if C99 standard semantics is required
+c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(144): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(144): note: consider using '%hs' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(144): note: consider using '%Ts' in the format string
+  c:\users\hung\desktop\khoa luan\project\threatmonitor\threatmonitor\regquery.cpp(144): note: consider defining _CRT_STDIO_ISO_WIDE_SPECIFIERS if C99 standard semantics is required
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Project\ThreatMonitor\Debug\ThreatMonitor.exe
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Project\ThreatMonitor\Debug\ThreatMonitor.pdb (Full PDB)
