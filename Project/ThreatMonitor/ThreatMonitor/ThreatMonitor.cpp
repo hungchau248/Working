@@ -16,9 +16,10 @@
 #pragma comment (lib, "Wevtapi.lib")
 
 int main() {
-	//SvcChangeNotify();
-	RegMon();
+	SvcChangeNotify();
+	//RegMon();
 	int a;
+	_tprintf(L"Enter any thing to exit: ");
 	scanf("%d", &a);
 	return 0;
 }

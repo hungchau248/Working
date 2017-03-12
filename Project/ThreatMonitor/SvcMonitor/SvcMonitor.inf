@@ -1,0 +1,90 @@
+;
+; SvcMonitor.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample ; TODO: edit Class
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171} ; TODO: edit ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=SvcMonitor.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+SvcMonitor.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%SvcMonitor.DeviceDesc%=SvcMonitor_Device, Root\SvcMonitor ; TODO: edit hw-id
+
+[SvcMonitor_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+SvcMonitor.sys
+
+;-------------- Service installation
+[SvcMonitor_Device.NT.Services]
+AddService = SvcMonitor,%SPSVCINST_ASSOCSERVICE%, SvcMonitor_Service_Inst
+
+; -------------- SvcMonitor driver install sections
+[SvcMonitor_Service_Inst]
+DisplayName    = %SvcMonitor.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\SvcMonitor.sys
+
+;
+;--- SvcMonitor_Device Coinstaller installation ------
+;
+
+[DestinationDirs]
+SvcMonitor_Device_CoInstaller_CopyFiles = 11
+
+[SvcMonitor_Device.NT.CoInstallers]
+AddReg=SvcMonitor_Device_CoInstaller_AddReg
+CopyFiles=SvcMonitor_Device_CoInstaller_CopyFiles
+
+[SvcMonitor_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[SvcMonitor_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[SourceDisksFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+[SvcMonitor_Device.NT.Wdf]
+KmdfService =  SvcMonitor, SvcMonitor_wdfsect
+[SvcMonitor_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+ClassName="Samples" ; TODO: edit ClassName
+DiskName = "SvcMonitor Installation Disk"
+SvcMonitor.DeviceDesc = "SvcMonitor Device"
+SvcMonitor.SVCDESC = "SvcMonitor Service"

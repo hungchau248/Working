@@ -71,6 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.14393.0;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.14393.0\km;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

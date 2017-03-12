@@ -47,13 +47,13 @@
     <ClCompile Include="ThreatMonitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SvcChangeNotify.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RegMonitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RegQuery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SvcChangeNotify.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
