@@ -101,6 +101,7 @@ int RegMonitor(LPVOID lpRegKey)
 	      printf("Error in CloseHandle.\n");
 	      return 1;
 	   }
+
 	}
    
    return 0;
@@ -150,7 +151,7 @@ int RegMonitor(LPVOID lpRegKey)
 		PCHAR lpKey = (PCHAR) calloc(MAX_KEY_LEN, 1);
 		
 		strncpy((char *) lpKey, lpKeyStart, (size_t)(lpKeyEnd - lpKeyStart));
-		//printf("Key: %s \n", lpKey);
+		printf("Key: %s \n", lpKey);
 		lpBuffer = (char *)lpKeyEnd + strlen("</Key>");
 		
 		pRegKey[iThread]->stlpMainKey = (PCHAR) calloc(5,1);
@@ -160,7 +161,7 @@ int RegMonitor(LPVOID lpRegKey)
 		
 		strncpy(lpMainKey, lpKey, (size_t)(lpTmp - lpKey));
 		lpKey = lpTmp + sizeof("\\");
-		//printf("Main Key: %s \n\n",lpMainKey);
+		printf("Main Key: %s \n\n",lpMainKey);
 		
 		//Registry Monitor Threads
 		
@@ -184,6 +185,7 @@ int RegMonitor(LPVOID lpRegKey)
 		memset(lpKey, 0, sizeof(lpKey));
 		memset(lpMainKey, 0, sizeof(lpMainKey));
 		iThread++;
+		Sleep(10);
 	}
 	
 	WaitForMultipleObjects(iThread, hThreadArray, TRUE, INFINITE);

@@ -32,7 +32,7 @@ void RegDataType(DWORD cbValueType, char* lpValueType){
 	}
 }
 
-int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMainKey, const char *achSubKey) 
+int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMainKey, const char *achSubKey)
 { 
 	//printf("Running Enum Key\n");
 	
@@ -70,6 +70,9 @@ int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMa
         &ftLastWriteTime);       // last write time 
  
     // Enumerate the subkeys, until RegEnumKeyEx fails.
+
+	printf("MAIN KEY: %s\n", achMainKey);
+	printf("SUB KEY: %s\n", achSubKey);
     
     if (cSubKeys)
     {

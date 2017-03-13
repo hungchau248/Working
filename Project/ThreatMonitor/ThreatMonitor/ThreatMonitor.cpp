@@ -15,9 +15,25 @@
 
 #pragma comment (lib, "Wevtapi.lib")
 
+#define MAX_THREADS 1
+
 int main() {
-	SvcChangeNotify();
-	//RegMon();
+	
+	DWORD dwThreadIdArray[MAX_THREADS];
+	HANDLE hThreadArray[MAX_THREADS];
+
+	hThreadArray[0] = CreateThread(
+	NULL,
+	0,
+	(LPTHREAD_START_ROUTINE)SvcChangeNotify,
+	NULL,
+	0,
+	&dwThreadIdArray[0]
+	);
+
+	//SvcChangeNotify();
+	Sleep(10);
+	RegMon();
 	int a;
 	_tprintf(L"Enter any thing to exit: ");
 	scanf("%d", &a);
