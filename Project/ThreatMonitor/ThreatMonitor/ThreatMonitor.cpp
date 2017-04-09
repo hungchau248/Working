@@ -12,13 +12,24 @@
 #include "SvcChangeNotify.h"
 #include "RegMonitor.h"
 #include "RegQuery.h"
+#include "Logging.h"
 
 #pragma comment (lib, "Wevtapi.lib")
 
 #define MAX_THREADS 1
+#define UNICODE_DEFAULT_STRINGS_LENGTH 512
 
 int main() {
-	
+	PCHAR timeBuffer = (PCHAR) calloc(60,1);
+	LPWSTR lpTimeBuffer = (LPWSTR)calloc(UNICODE_DEFAULT_STRINGS_LENGTH, sizeof(LPWSTR));
+	getDateTime(timeBuffer, lpTimeBuffer);
+	printf("Test Date Time : %s\n", timeBuffer);
+	_tprintf(L"Test Date Time in Unicode: %s\n", lpTimeBuffer);
+
+	//Current Running
+
+	/*
+
 	DWORD dwThreadIdArray[MAX_THREADS];
 	HANDLE hThreadArray[MAX_THREADS];
 
@@ -37,5 +48,8 @@ int main() {
 	int a;
 	_tprintf(L"Enter any thing to exit: ");
 	scanf("%d", &a);
+
+	*/
+	Sleep(10000);
 	return 0;
 }

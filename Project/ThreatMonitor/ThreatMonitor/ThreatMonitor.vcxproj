@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="Logging.h" />
     <ClInclude Include="RegMonitor.h" />
     <ClInclude Include="RegQuery.h" />
     <ClInclude Include="stdafx.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Logging.cpp" />
     <ClCompile Include="RegMonitor.cpp" />
     <ClCompile Include="RegQuery.cpp" />
     <ClCompile Include="stdafx.cpp">
