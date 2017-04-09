@@ -1,3 +1,10 @@
-﻿  Logging.cpp
+﻿  GetSystemInfo.cpp
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\getsysteminfo.cpp(29): warning C4551: function call missing argument list
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\getsysteminfo.cpp(33): warning C4551: function call missing argument list
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\getsysteminfo.cpp(51): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\getsysteminfo.cpp(55): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\getsysteminfo.cpp(60): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\getsysteminfo.cpp(25): warning C4996: 'GetVersion': was declared deprecated
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\um\sysinfoapi.h(183): note: see declaration of 'GetVersion'
   ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\ThreatMonitor\x64\Debug\ThreatMonitor.exe
   ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\ThreatMonitor\x64\Debug\ThreatMonitor.pdb (Full PDB)

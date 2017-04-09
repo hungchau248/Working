@@ -108,7 +108,7 @@ int RegMonitor(LPVOID lpRegKey)
 }
 
  DWORD WINAPI RegMon(){
-	LPCSTR szRegConfig = "Config/Registry/RegConfig.cfg";
+	LPCSTR szRegConfig = "Config/RegConfig.conf";
 	HANDLE hFile = CreateFileA(szRegConfig, GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL );
 	DWORD dwErrorCode = GetLastError();
 	if(dwErrorCode == ERROR_FILE_NOT_FOUND){

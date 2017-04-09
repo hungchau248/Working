@@ -42,6 +42,12 @@
     <ClInclude Include="Logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Networking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GetSystemInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Logging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GetSystemInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
