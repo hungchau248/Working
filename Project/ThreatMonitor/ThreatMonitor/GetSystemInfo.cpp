@@ -18,8 +18,6 @@ DWORD WINAPI GetSystemInfo() {
 	pComputerName = (PCHAR)calloc(MACHINE_BUFLEN, sizeof(CHAR));
 	dwNameSize = MACHINE_BUFLEN;
 	GetComputerNameA(pComputerName, &dwNameSize);
-	// Debug
-	printf("Computer Name: %s\n", pComputerName);
 
 	// Get Windows Version
 	DWORD dwVersion = GetVersion();
@@ -34,14 +32,13 @@ DWORD WINAPI GetSystemInfo() {
 		dwMinorVersion = 3;
 	}
 
-	//Debug
-	printf("Windows Version: %d.%d\n", dwMajorVersion, dwMinorVersion);
 
 	// Open System Infomation file for writing Information
 	LPCSTR pInfoFile = "Config/System.info";
 	HANDLE hInfoFile = CreateFileA(pInfoFile, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0,0);
 
 	// Writing Information to System.info 
+	// Write Comment
 	PCHAR pBuffer = (PCHAR) calloc(MAX_BUF_LEN, 1);
 	strcpy(pBuffer,
 		"## This is System Information File\n"\
@@ -50,6 +47,7 @@ DWORD WINAPI GetSystemInfo() {
 	
 	WriteFile(hInfoFile, pBuffer, strlen(pBuffer), &cbByteWritten, 0);
 	memset(pBuffer, 0, strlen(pBuffer));
+
 	// Write Computer Name
 	sprintf(pBuffer, "<ComputerName>%s</ComputerName>\n", pComputerName);
 	WriteFile(hInfoFile, pBuffer, strlen(pBuffer), &cbByteWritten, 0);

@@ -9,7 +9,10 @@
 #include <stdio.h>
 #include <tchar.h>
 
-void RegDataType(DWORD cbValueType, char* lpValueType){
+#include "DataTypes.h"
+#include "Logging.h"
+
+void WINAPI RegDataType(DWORD cbValueType, char* lpValueType){
 	switch(cbValueType){
 		case REG_BINARY:
 			strcpy(lpValueType, "REG_BINARY"); 					return;
@@ -32,13 +35,14 @@ void RegDataType(DWORD cbValueType, char* lpValueType){
 	}
 }
 
-int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMainKey, const char *achSubKey)
+
+int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMainKey, const char *achSubKey)
 { 
 	//printf("Running Enum Key\n");
 	
     TCHAR	 achKey[MAX_KEY_LENGTH];   // buffer for subkey name
     DWORD    cbName;                   // size of name string 
-    TCHAR    achClass[MAX_PATH] = TEXT("");  // buffer for class name 
+    TCHAR    achClass[MAX_PATH] = L"";  // buffer for class name 
     DWORD    cchClassName = MAX_PATH;  // size of class string 
     DWORD    cSubKeys=0;               // number of subkeys 
     DWORD    cbMaxSubKey;              // longest subkey size 
@@ -73,6 +77,18 @@ int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMa
 
 	printf("MAIN KEY: %s\n", achMainKey);
 	printf("SUB KEY: %s\n", achSubKey);
+
+	PCHAR chKey = (PCHAR)calloc(MAX_BUFFER_LEN,1);
+	strcpy(chKey, achMainKey);
+	strcat(chKey, "\\\\");
+	strcat(chKey, achSubKey);
+
+	LPWSTR wchLogKey = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
+	MultiByteToWideChar(CP_UTF8, 0, chKey, -1, wchLogKey, strlen(chKey));
+	_tprintf(L"achLogKey: %s\n", wchLogKey);
+
+	LPWSTR wchLogBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
+	LPWSTR wchTime = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
     
     if (cSubKeys)
     {
@@ -98,7 +114,16 @@ int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMa
             {
                 _tprintf(TEXT("(%d) %s\n"), i+1, achKey);
                 if(aft && nCount && (cSubKeys - 1 == i)){
-            		printf("Key added: %s\n", achKey);
+					getDateTime(NULL, wchTime);
+					_tprintf(L"DEBUG TIME: %s\n", wchTime);
+					wcscat(wchLogBuffer, wchTime);
+					wcscat(wchLogBuffer, L"[ALERT] ");
+					wcscat(wchLogBuffer, L"Key added: ");
+					wcscat(wchLogBuffer, wchLogKey);
+					wcscat(wchLogBuffer, L"\\\\");
+					wcscat(wchLogBuffer, achKey);
+					writeLog(0, wchLogBuffer);
+					_tprintf(L"%s\n", wchLogBuffer);
 				}
             }
         }
@@ -138,13 +163,21 @@ int RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMa
 				retCode = RegQueryValueEx(hKey, achValue, NULL, &cbValueType, lpValueData, &cbValueData);
 				if (retCode == ERROR_SUCCESS){
 					RegDataType(cbValueType, (char*)lpValueType);
-					_tprintf(TEXT("[%d]-Value Name: %s\n"), i+1, achValue);
+					_tprintf(L"[%d]-Value Name: %s\n", i+1, achValue);
 					printf("|-Value Type: %s\n", lpValueType);
-					_tprintf(TEXT("|-Value Data: %s\n"), lpValueData);
-					_tprintf(TEXT("\n"));
-					if(aft && (cValues >= *nValues) && (cValues - 1 == i)){
-						_tprintf(TEXT("Value Name added: %s\n"), achValue);
-						_tprintf(TEXT("Value Data added: %s\n"), lpValueData);
+					_tprintf(L"|-Value Data: %s\n", lpValueData);
+					_tprintf(L"\n");
+					if(aft && (cValues > *nValues) && (cValues - 1 == i)){
+						getDateTime(NULL, wchTime);
+						wcscpy(wchLogBuffer, wchTime);
+						wcscat(wchLogBuffer, L"[ALERT] ");
+						wcscat(wchLogBuffer, L"\nNew value added at Key: ");
+						wcscat(wchLogBuffer, wchLogKey);
+						wcscat(wchLogBuffer, L"\n--|Value Name added : ");
+						wcscat(wchLogBuffer, achValue);
+						wcscat(wchLogBuffer, L"\n--|Value Data: ");
+						wcscat(wchLogBuffer, (LPWSTR)lpValueData);
+						_tprintf(L"%s\n", wchLogBuffer);
 					} 
 				}
             } 

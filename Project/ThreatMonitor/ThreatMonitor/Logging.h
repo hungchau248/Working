@@ -1,5 +1,6 @@
 #pragma once
 #ifndef LOGGING_H
 #define LOGGING_H
-VOID getDateTime(PCHAR, LPWSTR);
+VOID WINAPI writeLog(DWORD, LPWSTR);
+VOID WINAPI getDateTime(PCHAR, LPWSTR);
 #endif

@@ -22,7 +22,7 @@
 #define MAX_THREADS 1
 #define UNICODE_DEFAULT_STRINGS_LENGTH 512
 
-int main() {
+int WINAPI main() {
 
 	GetSystemInfo();
 
@@ -34,11 +34,9 @@ int main() {
 
 
 	//Calling Networking Function
-	Networking();
+	//Networking();
 
 	//Current Running
-
-	/*
 
 	DWORD dwThreadIdArray[MAX_THREADS];
 	HANDLE hThreadArray[MAX_THREADS];
@@ -46,20 +44,19 @@ int main() {
 	hThreadArray[0] = CreateThread(
 	NULL,
 	0,
-	(LPTHREAD_START_ROUTINE)SvcChangeNotify,
+	(LPTHREAD_START_ROUTINE)RegMon,
 	NULL,
 	0,
 	&dwThreadIdArray[0]
 	);
 
+	Sleep(5000);
+	//RegMon();
 	//SvcChangeNotify();
-	Sleep(10);
-	RegMon();
 	int a;
 	_tprintf(L"Enter any thing to exit: ");
 	scanf("%d", &a);
 
-	*/
 	Sleep(10000);
 	return 0;
 }

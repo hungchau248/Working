@@ -151,6 +151,7 @@
     <ClInclude Include="GetSystemInfo.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="Networking.h" />
+    <ClInclude Include="ProcessData.h" />
     <ClInclude Include="RegMonitor.h" />
     <ClInclude Include="RegQuery.h" />
     <ClInclude Include="stdafx.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ProcessData.cpp" />
     <ClCompile Include="GetSystemInfo.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="Networking.cpp" />

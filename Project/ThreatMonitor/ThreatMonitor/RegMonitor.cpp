@@ -9,7 +9,7 @@
 #include "RegQuery.h"
 #include "DataTypes.h"
  
-int RegMonitor(LPVOID lpRegKey)
+int WINAPI RegMonitor(LPVOID lpRegKey)
 {
 	PREGKEY pRegKey;
 	pRegKey = (PREGKEY)lpRegKey;
