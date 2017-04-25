@@ -22,9 +22,10 @@
 #define MAX_THREADS 1
 #define UNICODE_DEFAULT_STRINGS_LENGTH 512
 
-int WINAPI main() {
+int main() {
 
 	GetSystemInfo();
+	Sleep(500);
 
 	PCHAR timeBuffer = (PCHAR) calloc(60,1);
 	LPWSTR lpTimeBuffer = (LPWSTR)calloc(UNICODE_DEFAULT_STRINGS_LENGTH, sizeof(LPWSTR));
@@ -37,7 +38,7 @@ int WINAPI main() {
 	//Networking();
 
 	//Current Running
-
+	Sleep(500);
 	DWORD dwThreadIdArray[MAX_THREADS];
 	HANDLE hThreadArray[MAX_THREADS];
 
@@ -50,9 +51,9 @@ int WINAPI main() {
 	&dwThreadIdArray[0]
 	);
 
-	Sleep(5000);
+	Sleep(500);
 	//RegMon();
-	//SvcChangeNotify();
+	SvcChangeNotify();
 	int a;
 	_tprintf(L"Enter any thing to exit: ");
 	scanf("%d", &a);
