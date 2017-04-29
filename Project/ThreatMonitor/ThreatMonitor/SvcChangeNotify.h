@@ -4,4 +4,4 @@
 #define SVCCHANGENOTIFY_H
 #endif
 
-int SvcChangeNotify();
+DWORD WINAPI SvcChangeNotify();

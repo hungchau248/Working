@@ -32,23 +32,37 @@ VOID WINAPI getDateTime(PCHAR ret_timeBuffer = NULL, LPWSTR wRet_timeBuffer = NU
 	delete(timeBuffer);
 }
 
-VOID WINAPI writeLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
-	LPWSTR wchLogFile = L"Logs/APTLog.log";
+DWORD WINAPI writeLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
+	LPWSTR wchLogFile;
 	HANDLE hFile;
-	hFile = CreateFileW(wchLogFile, GENERIC_READ | GENERIC_WRITE | FILE_APPEND_DATA, FILE_SHARE_READ, 0, OPEN_ALWAYS, 0, 0);
+
+	switch (dwLogType) {
+		case LOG_TYPE_REGISTRY:
+			wchLogFile = L"Logs/Registry.log";
+			break;
+		case LOG_TYPE_SERVICE:
+			wchLogFile = L"Logs/Services.log";
+			break;
+
+	}
+	//OPEN AND WRITE TO MAIN LOG FILE
+	hFile = CreateFileW(wchLogFile, GENERIC_WRITE | FILE_APPEND_DATA, FILE_SHARE_READ, 0, OPEN_ALWAYS, 0, 0);
 	DWORD dwErrorCode;
 	dwErrorCode = GetLastError();
 
-	wcscat(wchLogBuffer, L"\n\0");
 
 	// Write to end of file
 	DWORD dwByteNeeded = _tcslen(wchLogBuffer);
-	LPOVERLAPPED lpOverLapped = (LPOVERLAPPED) calloc(1, sizeof(OVERLAPPED));
+	LPOVERLAPPED lpOverLapped = (LPOVERLAPPED)calloc(1, sizeof(OVERLAPPED));
 	lpOverLapped->Offset = 0xffffffff;
 	lpOverLapped->OffsetHigh = 0xffffffff;
-	WriteFileEx(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded*2, lpOverLapped, 0);
+	dwByteNeeded *= 2;
+	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, lpOverLapped);
 	CloseHandle(hFile);
-	return;
+	delete(lpOverLapped);
+	
+																	
+	return 0;
 }
 
 

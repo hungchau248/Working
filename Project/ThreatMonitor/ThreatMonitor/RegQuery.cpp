@@ -85,7 +85,6 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 
 	LPWSTR wchLogKey = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
 	MultiByteToWideChar(CP_UTF8, 0, chKey, -1, wchLogKey, strlen(chKey));
-	_tprintf(L"achLogKey: %s\n", wchLogKey);
 
 	LPWSTR wchLogBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
 	LPWSTR wchTime = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
@@ -117,19 +116,22 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 					getDateTime(NULL, wchTime);
 					_tprintf(L"DEBUG TIME: %s\n", wchTime);
 					wcscat(wchLogBuffer, wchTime);
+					wcscat(wchLogBuffer, L"[REGISTRY] ");
 					wcscat(wchLogBuffer, L"[ALERT] ");
 					wcscat(wchLogBuffer, L"Key added: ");
 					wcscat(wchLogBuffer, wchLogKey);
 					wcscat(wchLogBuffer, L"\\\\");
 					wcscat(wchLogBuffer, achKey);
-					writeLog(0, wchLogBuffer);
-					_tprintf(L"%s\n", wchLogBuffer);
+					wcscat(wchLogBuffer, L"\n\0");
+					writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+					_tprintf(L"%s", wchLogBuffer);
+					memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
 				}
             }
         }
     } 
  	*nSubKeys = cSubKeys;
- 	
+
     // Enumerate the key values. 
     if (cValues) 
     {
@@ -171,13 +173,17 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 						getDateTime(NULL, wchTime);
 						wcscpy(wchLogBuffer, wchTime);
 						wcscat(wchLogBuffer, L"[ALERT] ");
+						wcscat(wchLogBuffer, L"[REGISTRY] ");
 						wcscat(wchLogBuffer, L"\nNew value added at Key: ");
 						wcscat(wchLogBuffer, wchLogKey);
 						wcscat(wchLogBuffer, L"\n--|Value Name added : ");
 						wcscat(wchLogBuffer, achValue);
 						wcscat(wchLogBuffer, L"\n--|Value Data: ");
 						wcscat(wchLogBuffer, (LPWSTR)lpValueData);
-						_tprintf(L"%s\n", wchLogBuffer);
+						wcscat(wchLogBuffer, L"\n\0");
+						writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+						_tprintf(L"%s", wchLogBuffer);
+						memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
 					} 
 				}
             } 
