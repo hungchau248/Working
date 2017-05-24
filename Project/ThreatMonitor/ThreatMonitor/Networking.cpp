@@ -111,9 +111,69 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort) {
 
 	printf("Connected to Server at [%s:%d]\n", pServerIP, dwPort);
 
-	//Wait while tmpLogFile is available and read log to send
+	//Send ComputerName and WindowsVersion
+	send(ConnectSocket, pComputerName, strlen(pComputerName), 0);
+	Sleep(30);
+	send(ConnectSocket, pWindowsVersion, strlen(pWindowsVersion), 0);
+
+	//Receive a port to send log to
+	PCHAR pBuf;
 
 
+	pBuf = (PCHAR)calloc(SOCK_BUFLEN, 0);
+	recv(ConnectSocket, pBuf, SOCK_BUFLEN, 0);
+	dwPort = LittleToBig(atoi(pBuf));
+	_tprintf(L"Receive Connection Port at: %d \n", dwPort);
+
+	closesocket(ConnectSocket);
+	ConnectSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if (ConnectSocket == INVALID_SOCKET) {
+		printf("Error in creating socket: %ld\n", WSAGetLastError());
+		WSACleanup();
+		return 1;
+	}
+	
+	sock.sin_family = AF_INET;
+	sock.sin_port = LittleToBig(dwPort);
+	sock.sin_addr.s_addr = inet_addr(pServerIP);
+
+	iResult = connect(ConnectSocket, (SOCKADDR*)&sock, sizeof(sock));
+	if (iResult != 0) {
+		printf("Error connecting to %s:%d . With error code: %ld", pServerIP, dwPort, WSAGetLastError());
+		WSACleanup();
+		return 1;
+	}
+
+	printf("Connected to Server at [%s:%d] for Data Transfering \n", pServerIP, dwPort);
+
+	//REad Tmp_Log File and send to Server
+
+	HANDLE hRegFile = NULL,
+		hSvcFile = NULL;
+	DWORD dwRegByteRead = 0,
+		dwSvcByteRead = 0;
+	LPWSTR lpRegBuffer,
+		lpSvcBuffer;
+
+	lpRegBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(LPWSTR));
+	lpSvcBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(LPWSTR));
+
+	hRegFile = CreateFileW(L"Logs/tmpRegistry.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+	dwErrorCode = GetLastError();
+	if (dwErrorCode == ERROR_SUCCESS)
+		ReadFile(hRegFile, lpRegBuffer, MAX_BUFFER_LEN, &dwRegByteRead, 0);
+
+	
+	hSvcFile = CreateFileW(L"Logs/tmpService.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+	dwErrorCode = GetLastError();
+	if (dwErrorCode == ERROR_SUCCESS)
+		ReadFile(hSvcFile, lpSvcBuffer, MAX_BUFFER_LEN, &dwRegByteRead, 0);
+	
+
+
+
+
+	closesocket(ConnectSocket);
 	WSACleanup();
 
 	return 0;

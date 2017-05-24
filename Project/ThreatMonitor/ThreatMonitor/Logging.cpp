@@ -5,7 +5,7 @@
 #include <windows.h>
 
 #include "DataTypes.h"
-
+#include "Networking.h"
 using namespace std;
 
 VOID WINAPI getDateTime(PCHAR ret_timeBuffer = NULL, LPWSTR wRet_timeBuffer = NULL) {
@@ -33,15 +33,18 @@ VOID WINAPI getDateTime(PCHAR ret_timeBuffer = NULL, LPWSTR wRet_timeBuffer = NU
 }
 
 DWORD WINAPI writeLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
-	LPWSTR wchLogFile;
+	LPWSTR wchLogFile = NULL;
+	LPWSTR wchLogTmpFile = NULL;
 	HANDLE hFile;
 
 	switch (dwLogType) {
 		case LOG_TYPE_REGISTRY:
 			wchLogFile = L"Logs/Registry.log";
+			wchLogTmpFile = L"Logs/tmpRegistry.log";
 			break;
 		case LOG_TYPE_SERVICE:
 			wchLogFile = L"Logs/Services.log";
+			wchLogTmpFile = L"Logs/tmpService.Log";
 			break;
 
 	}
@@ -59,8 +62,15 @@ DWORD WINAPI writeLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
 	dwByteNeeded *= 2;
 	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, lpOverLapped);
 	CloseHandle(hFile);
+
+	hFile = CreateFileW(wchLogTmpFile, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
+	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, 0);
+
+	//Write log to Server
+	Networking();
+
+	CloseHandle(hFile);
 	delete(lpOverLapped);
-	
 																	
 	return 0;
 }

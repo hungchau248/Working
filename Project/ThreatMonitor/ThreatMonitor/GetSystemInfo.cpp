@@ -10,8 +10,8 @@
 DWORD WINAPI GetSystemInfo() {
 
 	PCHAR pComputerName;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
+	DWORD dwMajorVersion = 0;
+	DWORD dwMinorVersion = 0;
 	DWORD dwNameSize;
 
 	// Get Computer Name
@@ -20,9 +20,11 @@ DWORD WINAPI GetSystemInfo() {
 	GetComputerNameA(pComputerName, &dwNameSize);
 
 	// Get Windows Version
-	DWORD dwVersion = GetVersion();
-	dwMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
-	dwMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
+	//DWORD dwVersion = GetVersion();
+	//dwMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
+	//dwMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
+
+	GetProductInfo(dwMajorVersion, dwMinorVersion, NULL, NULL, NULL);
 
 	if (IsWindows10OrGreater) {
 		dwMajorVersion = 10;

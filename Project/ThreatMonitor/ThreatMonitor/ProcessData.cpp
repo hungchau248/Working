@@ -12,7 +12,7 @@ PCHAR WINAPI ParseData(PCHAR pBuffer, CONST PCHAR pPrefix) {
 	PCHAR pStart,
 		pEnd,
 		pSurfix,
-		pData;
+		pData = NULL;
 
 	pStart = (PCHAR)strstr(pBuffer, pPrefix);
 
