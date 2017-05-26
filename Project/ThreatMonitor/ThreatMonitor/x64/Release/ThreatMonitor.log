@@ -1,8 +1,12 @@
-﻿  Networking.cpp
-Networking.cpp(102): warning C4244: '=': conversion from 'DWORD' to 'USHORT', possible loss of data
-Networking.cpp(115): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-Networking.cpp(117): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-Networking.cpp(137): warning C4244: '=': conversion from 'DWORD' to 'USHORT', possible loss of data
+﻿  RegQuery.cpp
+RegQuery.cpp(87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+RegQuery.cpp(98): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(146): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(172): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(170): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
+  RegQuery.cpp(170): note: consider using '%hs' in the format string
+  RegQuery.cpp(170): note: consider using '%Ts' in the format string
+  RegQuery.cpp(170): note: this warning is based on non-standard semantics used by Visual C++
   Generating code
   1 of 36 functions ( 2.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation

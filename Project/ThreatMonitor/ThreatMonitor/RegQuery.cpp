@@ -174,11 +174,11 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 						wcscpy(wchLogBuffer, wchTime);
 						wcscat(wchLogBuffer, L"[ALERT] ");
 						wcscat(wchLogBuffer, L"[REGISTRY] ");
-						wcscat(wchLogBuffer, L"\nNew value added at Key: ");
+						wcscat(wchLogBuffer, L" New value added at Key: ");
 						wcscat(wchLogBuffer, wchLogKey);
-						wcscat(wchLogBuffer, L"\n--|Value Name added : ");
+						wcscat(wchLogBuffer, L"  -->Value Name added : ");
 						wcscat(wchLogBuffer, achValue);
-						wcscat(wchLogBuffer, L"\n--|Value Data: ");
+						wcscat(wchLogBuffer, L"  -->Value Data: ");
 						wcscat(wchLogBuffer, (LPWSTR)lpValueData);
 						wcscat(wchLogBuffer, L"\n\0");
 						writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);

@@ -63,13 +63,12 @@ DWORD WINAPI writeLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
 	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, lpOverLapped);
 	CloseHandle(hFile);
 
-	hFile = CreateFileW(wchLogTmpFile, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
+	hFile = CreateFileW(wchLogTmpFile, GENERIC_WRITE, FILE_SHARE_READ, 0, CREATE_ALWAYS, 0, 0);
 	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, 0);
-
-	//Write log to Server
-	Networking();
-
 	CloseHandle(hFile);
+	//Write log to Server
+	Networking(dwLogType);
+
 	delete(lpOverLapped);
 																	
 	return 0;

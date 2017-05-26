@@ -19,7 +19,7 @@ DWORD LittleToBig(DWORD in) {
 	return (in << 8 | in >> 8) & 0xffff;
 }
 
-DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort) {
+DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 
 	// === GETTING LOCAL SYSTEM INFORMATION === //
 	DWORD dwErrorCode, 
@@ -133,8 +133,9 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort) {
 		return 1;
 	}
 	
+	//Connect to that received port
 	sock.sin_family = AF_INET;
-	sock.sin_port = LittleToBig(dwPort);
+	sock.sin_port = dwPort;
 	sock.sin_addr.s_addr = inet_addr(pServerIP);
 
 	iResult = connect(ConnectSocket, (SOCKADDR*)&sock, sizeof(sock));
@@ -155,23 +156,57 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort) {
 	LPWSTR lpRegBuffer,
 		lpSvcBuffer;
 
+	PCHAR pRegBuffer = NULL,
+		pSvcBuffer = NULL;
+	DWORD dwByteNeeded = 0;
+
 	lpRegBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(LPWSTR));
 	lpSvcBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(LPWSTR));
 
-	hRegFile = CreateFileW(L"Logs/tmpRegistry.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
-	dwErrorCode = GetLastError();
-	if (dwErrorCode == ERROR_SUCCESS)
-		ReadFile(hRegFile, lpRegBuffer, MAX_BUFFER_LEN, &dwRegByteRead, 0);
+	switch (dwLogType) {
+	case LOG_TYPE_REGISTRY:
+		hRegFile = CreateFileW(L"Logs/tmpRegistry.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+		dwErrorCode = GetLastError();
+		if (dwErrorCode == ERROR_SUCCESS) {
+			ReadFile(hRegFile, lpRegBuffer, MAX_BUFFER_LEN, &dwRegByteRead, 0);
+			_tprintf(L"%s\n", lpRegBuffer);
+		}
+		CloseHandle(hRegFile);
+		printf("Error Code: %d\n", dwErrorCode); // Debug
 
+		//Start sending Log
+		if (dwRegByteRead > 0) {
+			dwByteNeeded = WideCharToMultiByte(CP_UTF8, 0, lpRegBuffer, -1, pRegBuffer, 0, NULL, NULL);
+			pRegBuffer = (LPSTR)calloc(dwByteNeeded, 1);
+			WideCharToMultiByte(CP_UTF8, 0, lpRegBuffer, -1, pRegBuffer, dwByteNeeded, NULL, NULL);
+			printf("Sending Registry Log to Server: %s \n", pRegBuffer);
+			send(ConnectSocket, (LPSTR)pRegBuffer, dwByteNeeded, 0);
+		}
+
+		break;
+
+	case LOG_TYPE_SERVICE:
+		hSvcFile = CreateFileW(L"Logs/tmpService.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+		dwErrorCode = GetLastError();
+		if (dwErrorCode == ERROR_SUCCESS) {
+			ReadFile(hSvcFile, lpSvcBuffer, MAX_BUFFER_LEN, &dwSvcByteRead, 0);
+			_tprintf(L"%s\n", lpSvcBuffer);
+		}
+		CloseHandle(hSvcFile);
+		printf("Error Code: %d\n", dwErrorCode); // Debug
+
+		//Start sending Log
+		if (dwSvcByteRead > 0) {
+			dwByteNeeded = WideCharToMultiByte(CP_UTF8, 0, lpSvcBuffer, -1, pSvcBuffer, 0, NULL, NULL);
+			pSvcBuffer = (LPSTR)calloc(dwByteNeeded, 1);
+			WideCharToMultiByte(CP_UTF8, 0, lpSvcBuffer, -1, pSvcBuffer, dwByteNeeded, NULL, NULL);
+			printf("%d\n", dwByteNeeded); //Debut
+			printf("Sending Service Log to Server: %s \n", pSvcBuffer);
+			send(ConnectSocket, (LPSTR)pSvcBuffer, dwByteNeeded, 0);
+		}
+	}
 	
-	hSvcFile = CreateFileW(L"Logs/tmpService.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
-	dwErrorCode = GetLastError();
-	if (dwErrorCode == ERROR_SUCCESS)
-		ReadFile(hSvcFile, lpSvcBuffer, MAX_BUFFER_LEN, &dwRegByteRead, 0);
-	
-
-
-
+	_tprintf(L"Debug\n");
 
 	closesocket(ConnectSocket);
 	WSACleanup();
@@ -180,7 +215,7 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort) {
 }
 
 
-DWORD WINAPI Networking() {
+DWORD WINAPI Networking(DWORD dwLogType) {
 
 	PCHAR pServerIP, pPort;
 	PCHAR pStart, pEnd;
@@ -251,7 +286,7 @@ DWORD WINAPI Networking() {
 
 	//Connect to Server
 	printf("Connecting to [%s:%d]\n", pServerIP, dwPort);
-	SendLogToServer(pServerIP, dwPort);
+	SendLogToServer(pServerIP, dwPort, dwLogType);
 
 	_tprintf(L"Finish Successfully ! \n");
 }
