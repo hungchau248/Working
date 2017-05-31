@@ -51,13 +51,12 @@ int main() {
 	&dwThreadIdArray[0]
 	);
 
-	Sleep(500);
+	Sleep(1000);
 	//RegMon();
 	SvcChangeNotify();
 	int a;
 	_tprintf(L"Enter any thing to exit: ");
 	scanf("%d", &a);
 
-	Sleep(10000);
 	return 0;
 }

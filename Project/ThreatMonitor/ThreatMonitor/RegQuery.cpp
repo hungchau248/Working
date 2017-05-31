@@ -184,7 +184,23 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 						writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
 						_tprintf(L"%s", wchLogBuffer);
 						memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
-					} 
+					}
+					else if(aft && (*nValues == cValues) && (cValues - 1) == i){
+						getDateTime(NULL, wchTime);
+						wcscpy(wchLogBuffer, wchTime);
+						wcscat(wchLogBuffer, L"[ALERT] ");
+						wcscat(wchLogBuffer, L"[REGISTRY] ");
+						wcscat(wchLogBuffer, L" New value modified at Key: ");
+						wcscat(wchLogBuffer, wchLogKey);
+						wcscat(wchLogBuffer, L"  -->Value Name: ");
+						wcscat(wchLogBuffer, achValue);
+						wcscat(wchLogBuffer, L"  -->Value Data: ");
+						wcscat(wchLogBuffer, (LPWSTR)lpValueData);
+						wcscat(wchLogBuffer, L"\n\0");
+						writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+						_tprintf(L"%s", wchLogBuffer);
+						memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
+					}
 				}
             } 
         }
