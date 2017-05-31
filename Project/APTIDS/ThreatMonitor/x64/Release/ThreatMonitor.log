@@ -1,0 +1,3 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (ThreatMonitor.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\APTIDS\x64\Release\APTIDS.exe
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\APTIDS\x64\Release\APTIDS.pdb (Full PDB)

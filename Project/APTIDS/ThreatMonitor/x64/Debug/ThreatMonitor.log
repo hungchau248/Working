@@ -1,0 +1,4 @@
+﻿  Logging.cpp
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\logging.cpp(58): warning C4267: 'initializing': conversion from 'size_t' to 'DWORD', possible loss of data
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\ThreatMonitor\x64\Debug\ThreatMonitor.exe
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\ThreatMonitor\x64\Debug\ThreatMonitor.pdb (Partial PDB)

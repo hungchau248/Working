@@ -1,0 +1,5 @@
+﻿  RegMonitor.cpp
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\regmonitor.cpp(145): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\hung\desktop\khoa luan\working\project\threatmonitor\threatmonitor\regmonitor.cpp(193): warning C4018: '<': signed/unsigned mismatch
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\ThreatMonitor\Debug\ThreatMonitor.exe
+  ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\ThreatMonitor\Debug\ThreatMonitor.pdb (Full PDB)
