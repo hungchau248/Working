@@ -36,7 +36,14 @@ void WINAPI RegDataType(DWORD cbValueType, char* lpValueType){
 }
 
 
-int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char *achMainKey, const char *achSubKey)
+int WINAPI RegQuery(HKEY hKey, 
+	int *nSubKeys, 
+	int *nValues, 
+	bool aft, 
+	const char *achMainKey, 
+	const char *achSubKey, 
+	LPWSTR lpLastSubkeyName, 
+	LPWSTR lpLastValueName)
 { 
 	//printf("Running Enum Key\n");
 	
@@ -88,8 +95,13 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 
 	LPWSTR wchLogBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
 	LPWSTR wchTime = (LPWSTR)calloc(MAX_BUFFER_LEN, sizeof(TCHAR));
+
+	// Return 0 in case of delete
+	if (aft && (*nSubKeys > cSubKeys)) {
+		return 0;
+	}
     
-    if (cSubKeys)
+    if (cSubKeys > 0)
     {
     	int nCount = 0;
     	
@@ -97,7 +109,9 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
         
 		if((*nSubKeys < cSubKeys) && aft){
 			nCount = (cSubKeys - *nSubKeys);
+		
 		}
+
 		
         for (i=0; i<cSubKeys; i++) 
         { 
@@ -112,7 +126,13 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
             if (retCode == ERROR_SUCCESS) 
             {
                 _tprintf(TEXT("(%d) %s\n"), i+1, achKey);
-                if(aft && nCount && (cSubKeys - 1 == i)){
+				if ((cSubKeys - 1 == i) && !aft && !i) {
+					wcscpy(lpLastSubkeyName, achKey);
+					_tprintf(L"Last SubKey: %s\n", lpLastSubkeyName);
+				}
+				
+
+                if((cSubKeys - 1 == i) && aft && (nCount > 0)){
 					getDateTime(NULL, wchTime);
 					_tprintf(L"DEBUG TIME: %s\n", wchTime);
 					wcscat(wchLogBuffer, wchTime);
@@ -123,14 +143,37 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 					wcscat(wchLogBuffer, L"\\\\");
 					wcscat(wchLogBuffer, achKey);
 					wcscat(wchLogBuffer, L"\n\0");
-					writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+					WriteLog(LOG_TYPE_REGISTRY, wchLogBuffer);
 					_tprintf(L"%s", wchLogBuffer);
 					memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
+					return 0;
+				}
+				else if ((cSubKeys - 1 == i) && aft && (nCount == 0) && (cSubKeys > 0)) {
+					if (wcscmp(lpLastSubkeyName, achKey)) {
+						getDateTime(NULL, wchTime);
+						_tprintf(L"DEBUG TIME: %s\n", wchTime);
+						wcscat(wchLogBuffer, wchTime);
+						wcscat(wchLogBuffer, L"[REGISTRY] ");
+						wcscat(wchLogBuffer, L"[ALERT] ");
+						wcscat(wchLogBuffer, L"Key modified: ");
+						wcscat(wchLogBuffer, wchLogKey);
+						wcscat(wchLogBuffer, L"\\\\");
+						wcscat(wchLogBuffer, achKey);
+						wcscat(wchLogBuffer, L"\n\0");
+						WriteLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+						_tprintf(L"%s", wchLogBuffer);
+						memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
+						return 0;
+					}
 				}
             }
         }
     } 
  	*nSubKeys = cSubKeys;
+
+	if (aft && (*nValues > cValues)) {
+		return 0;
+	}
 
     // Enumerate the key values. 
     if (cValues) 
@@ -169,7 +212,13 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 					printf("|-Value Type: %s\n", lpValueType);
 					_tprintf(L"|-Value Data: %s\n", lpValueData);
 					_tprintf(L"\n");
-					if(aft && (cValues > *nValues) && (cValues - 1 == i)){
+
+					if ((cValues - 1 == i) && !aft ) {
+						wcscpy(lpLastValueName, achValue);
+						_tprintf(L"Last Value: %s\n", lpLastValueName);
+					}
+
+					if((cValues - 1 == i) && aft && (cValues > *nValues)){
 						getDateTime(NULL, wchTime);
 						wcscpy(wchLogBuffer, wchTime);
 						wcscat(wchLogBuffer, L"[ALERT] ");
@@ -181,30 +230,33 @@ int WINAPI RegQuery(HKEY hKey, int *nSubKeys, int *nValues, bool aft, const char
 						wcscat(wchLogBuffer, L"  -->Value Data: ");
 						wcscat(wchLogBuffer, (LPWSTR)lpValueData);
 						wcscat(wchLogBuffer, L"\n\0");
-						writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+						WriteLog(LOG_TYPE_REGISTRY, wchLogBuffer);
 						_tprintf(L"%s", wchLogBuffer);
 						memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
 					}
-					else if(aft && (*nValues == cValues) && (cValues - 1) == i){
-						getDateTime(NULL, wchTime);
-						wcscpy(wchLogBuffer, wchTime);
-						wcscat(wchLogBuffer, L"[ALERT] ");
-						wcscat(wchLogBuffer, L"[REGISTRY] ");
-						wcscat(wchLogBuffer, L" New value modified at Key: ");
-						wcscat(wchLogBuffer, wchLogKey);
-						wcscat(wchLogBuffer, L"  -->Value Name: ");
-						wcscat(wchLogBuffer, achValue);
-						wcscat(wchLogBuffer, L"  -->Value Data: ");
-						wcscat(wchLogBuffer, (LPWSTR)lpValueData);
-						wcscat(wchLogBuffer, L"\n\0");
-						writeLog(LOG_TYPE_REGISTRY, wchLogBuffer);
-						_tprintf(L"%s", wchLogBuffer);
-						memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
+					else if((cValues - 1 == i) && aft && (*nValues == cValues) ){
+						_tprintf(L"Last Value: %s\n", lpLastValueName);
+						if (wcscmp(lpLastValueName, achValue)) {
+							getDateTime(NULL, wchTime);
+							wcscpy(wchLogBuffer, wchTime);
+							wcscat(wchLogBuffer, L"[ALERT] ");
+							wcscat(wchLogBuffer, L"[REGISTRY] ");
+							wcscat(wchLogBuffer, L" New value modified at Key: ");
+							wcscat(wchLogBuffer, wchLogKey);
+							wcscat(wchLogBuffer, L"  -->Value Name: ");
+							wcscat(wchLogBuffer, achValue);
+							wcscat(wchLogBuffer, L"  -->Value Data: ");
+							wcscat(wchLogBuffer, (LPWSTR)lpValueData);
+							wcscat(wchLogBuffer, L"\n\0");
+							WriteLog(LOG_TYPE_REGISTRY, wchLogBuffer);
+							_tprintf(L"%s", wchLogBuffer);
+							memset(wchLogBuffer, 0, sizeof(wchLogBuffer));
+						}
 					}
 				}
             } 
         }
     }
-    *nValues = cValues;
+		*nValues = cValues;
     return 0;
 }

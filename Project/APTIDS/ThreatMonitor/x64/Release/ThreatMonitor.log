@@ -1,3 +1,19 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (ThreatMonitor.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  RegQuery.cpp
+RegQuery.cpp(94): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+RegQuery.cpp(100): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(123): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(187): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(213): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(245): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(237): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
+  RegQuery.cpp(237): note: consider using '%hs' in the format string
+  RegQuery.cpp(237): note: consider using '%Ts' in the format string
+  RegQuery.cpp(237): note: this warning is based on non-standard semantics used by Visual C++
+  Generating code
+  2 of 36 functions ( 5.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
   ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\APTIDS\x64\Release\APTIDS.exe
   ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\APTIDS\x64\Release\APTIDS.pdb (Full PDB)

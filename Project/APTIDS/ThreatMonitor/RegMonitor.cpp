@@ -41,20 +41,30 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
    	}
    
     int nSubKeys = 0, nValues = 0;
+
+	static LPWSTR lpLastSubkeyName = NULL,
+		lpLastValueName = NULL;
+	lpLastSubkeyName = (LPWSTR)calloc(255, sizeof(wchar_t));
+	lpLastValueName = (LPWSTR)calloc(16383, sizeof(wchar_t));
    
    while(1){
-	   	printf("\n===> Monitoring Key: %s\\%s\n",achMainKey, achSubKey);
-	   // Open a key.
-	    lErrorCode = RegOpenKeyExA(hMainKey, achSubKey, 0, KEY_NOTIFY|KEY_READ|KEY_QUERY_VALUE, &hKey);
-	   if (lErrorCode != ERROR_SUCCESS)
-	   {
-	      printf("Error in RegOpenKeyEx (%d).\n", lErrorCode);
-	      return 1;
-	   }
-	   
-	    //Snapshot Registry Before Change
-		RegQuery(hKey, &nSubKeys, &nValues, FALSE, achMainKey, achSubKey);
-		
+		printf("\n===> Monitoring Key: %s\\%s\n",achMainKey, achSubKey);
+		// Open a key.
+		lErrorCode = RegOpenKeyExA(hMainKey, achSubKey, 0, KEY_NOTIFY|KEY_READ|KEY_QUERY_VALUE, &hKey);
+		if (lErrorCode != ERROR_SUCCESS)
+		{
+			printf("Error in RegOpenKeyEx (%d).\n", lErrorCode);
+			return 1;
+		}
+		// Variable for storing last Subkey and Value in chain
+		memset(lpLastSubkeyName, 0, 255);
+		memset(lpLastValueName, 0, 16383);
+
+		//Snapshot Registry Before Change
+		RegQuery(hKey, &nSubKeys, &nValues, FALSE, achMainKey, achSubKey, lpLastSubkeyName, lpLastValueName);
+		_tprintf(L"Last SubKey Debug: %s\n", lpLastSubkeyName); //Debug
+		_tprintf(L"Last Value Debug: %s\n", lpLastValueName); //Debug
+
 	    // Create an event.
 	    hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 	    if (hEvent == NULL)
@@ -85,7 +95,7 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 		else printf("\nChange has occurred.\n");
 		
 		//Snapshot Registry After Change
-		RegQuery(hKey, &nSubKeys, &nValues, TRUE, achMainKey, achSubKey);
+		RegQuery(hKey, &nSubKeys, &nValues, TRUE, achMainKey, achSubKey, lpLastSubkeyName, lpLastValueName);
 	
 	   // Close the key.
 	   lErrorCode = RegCloseKey(hKey);

@@ -32,7 +32,7 @@ VOID WINAPI getDateTime(PCHAR ret_timeBuffer = NULL, LPWSTR wRet_timeBuffer = NU
 	delete(timeBuffer);
 }
 
-DWORD WINAPI writeLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
+DWORD WINAPI WriteLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
 	LPWSTR wchLogFile = NULL;
 	LPWSTR wchLogTmpFile = NULL;
 	HANDLE hFile;

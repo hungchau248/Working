@@ -65,7 +65,7 @@ VOID CALLBACK NotifyCallback(
 			wcscat(wchLogBuffer, L"Service Created: ");
 			wcscat(wchLogBuffer, notifyBuffer->pszServiceNames + (CHAR)1);
 			wcscat(wchLogBuffer, L"\n\0");
-			writeLog(LOG_TYPE_SERVICE, wchLogBuffer);
+			WriteLog(LOG_TYPE_SERVICE, wchLogBuffer);
 			_tprintf(L"%s", wchLogBuffer);
 			break;
 
@@ -73,7 +73,7 @@ VOID CALLBACK NotifyCallback(
 			wcscat(wchLogBuffer, L"Service Deleted: ");
 			wcscat(wchLogBuffer, notifyBuffer->pszServiceNames);
 			wcscat(wchLogBuffer, L"\n\0");
-			writeLog(LOG_TYPE_SERVICE, wchLogBuffer);
+			WriteLog(LOG_TYPE_SERVICE, wchLogBuffer);
 			_tprintf(L"%s", wchLogBuffer);
 
 			break;
