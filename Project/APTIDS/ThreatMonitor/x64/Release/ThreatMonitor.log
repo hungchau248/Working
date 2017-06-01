@@ -2,14 +2,14 @@
   RegQuery.cpp
 RegQuery.cpp(94): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 RegQuery.cpp(100): warning C4018: '>': signed/unsigned mismatch
-RegQuery.cpp(123): warning C4018: '<': signed/unsigned mismatch
-RegQuery.cpp(187): warning C4018: '>': signed/unsigned mismatch
-RegQuery.cpp(213): warning C4018: '<': signed/unsigned mismatch
-RegQuery.cpp(245): warning C4018: '>': signed/unsigned mismatch
-RegQuery.cpp(237): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
-  RegQuery.cpp(237): note: consider using '%hs' in the format string
-  RegQuery.cpp(237): note: consider using '%Ts' in the format string
-  RegQuery.cpp(237): note: this warning is based on non-standard semantics used by Visual C++
+RegQuery.cpp(110): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(174): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(189): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(221): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(213): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
+  RegQuery.cpp(213): note: consider using '%hs' in the format string
+  RegQuery.cpp(213): note: consider using '%Ts' in the format string
+  RegQuery.cpp(213): note: this warning is based on non-standard semantics used by Visual C++
   Generating code
   2 of 36 functions ( 5.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
