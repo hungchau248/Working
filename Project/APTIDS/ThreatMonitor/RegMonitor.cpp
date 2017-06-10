@@ -18,28 +18,28 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 	snprintf(achMainKey, 5, "%s", pRegKey->stlpMainKey);
 	snprintf(achSubKey, MAX_KEY_LEN, "%s", pRegKey->stlpKey);
 	
-   DWORD  dwFilter = REG_NOTIFY_CHANGE_NAME |
-                     REG_NOTIFY_CHANGE_ATTRIBUTES |
-                     REG_NOTIFY_CHANGE_LAST_SET |
-                     REG_NOTIFY_CHANGE_SECURITY; 
+	DWORD dwFilter = REG_NOTIFY_CHANGE_NAME |
+		REG_NOTIFY_CHANGE_ATTRIBUTES |
+		REG_NOTIFY_CHANGE_LAST_SET |
+		REG_NOTIFY_CHANGE_SECURITY; 
 
-   HANDLE hEvent;
-   HKEY   hMainKey;
-   HKEY   hKey;
-   LONG   lErrorCode;
+	HANDLE hEvent;
+	HKEY   hMainKey;
+	HKEY   hKey;
+	LONG   lErrorCode;
 
-   // Convert parameters to appropriate handles.
-   if (strcmp("HKLM", achMainKey) == 0) hMainKey=HKEY_LOCAL_MACHINE;
-   else if(strcmp("HKU", achMainKey) == 0) hMainKey=HKEY_USERS;
-   else if(strcmp("HKCU", achMainKey) == 0) hMainKey=HKEY_CURRENT_USER;
-   else if(strcmp("HKCR", achMainKey) == 0) hMainKey=HKEY_CLASSES_ROOT;
-   else if(strcmp("HCC", achMainKey) == 0) hMainKey=HKEY_CURRENT_CONFIG;
-   else 
+	// Convert parameters to appropriate handles.
+	if (strcmp("HKLM", achMainKey) == 0) hMainKey=HKEY_LOCAL_MACHINE;
+	else if(strcmp("HKU", achMainKey) == 0) hMainKey=HKEY_USERS;
+	else if(strcmp("HKCU", achMainKey) == 0) hMainKey=HKEY_CURRENT_USER;
+	else if(strcmp("HKCR", achMainKey) == 0) hMainKey=HKEY_CLASSES_ROOT;
+	else if(strcmp("HCC", achMainKey) == 0) hMainKey=HKEY_CURRENT_CONFIG;
+	else 
    	{
-      printf("Usage: notify [HKLM|HKU|HKCU|HKCR|HCC] [<subkey>]\n");
-      return 1;
+		printf("Usage: notify [HKLM|HKU|HKCU|HKCR|HCC] [<subkey>]\n");
+		return 1;
    	}
-   
+	
     int nSubKeys = 0, nValues = 0;
 
 	static LPWSTR lpLastSubkeyName = NULL,
@@ -47,7 +47,7 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 	lpLastSubkeyName = (LPWSTR)calloc(255, sizeof(wchar_t));
 	lpLastValueName = (LPWSTR)calloc(16383, sizeof(wchar_t));
    
-   while(1){
+	while(1){
 		printf("\n===> Monitoring Key: %s\\%s\n",achMainKey, achSubKey);
 		// Open a key.
 		lErrorCode = RegOpenKeyExA(hMainKey, achSubKey, 0, KEY_NOTIFY|KEY_READ|KEY_QUERY_VALUE, &hKey);
@@ -73,12 +73,14 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 	      return 1;
 	    }
 	
-	   // Watch the registry key for a change of value.
-	   lErrorCode = RegNotifyChangeKeyValue(hKey, 
-	                                        TRUE, 
-	                                        dwFilter, 
-	                                        hEvent, 
-	                                        TRUE);
+		// Watch the registry key for a change of value.
+		lErrorCode 
+			= RegNotifyChangeKeyValue(hKey, 
+			TRUE, 
+			dwFilter, 
+			hEvent, 
+			TRUE);
+
 	   if (lErrorCode != ERROR_SUCCESS)
 	   {
 	      printf("Error in RegNotifyChangeKeyValue (%d).\n", lErrorCode);
@@ -164,17 +166,18 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 		printf("Key: %s \n", lpKey);
 		lpBuffer = (char *)lpKeyEnd + strlen("</Key>");
 		
+		// Allocating memory for storing the main key
 		pRegKey[iThread]->stlpMainKey = (PCHAR) calloc(5,1);
+		//Registry main key (Root key)
 		PCHAR lpMainKey = (PCHAR) calloc(5,1);
-		
 		PCHAR lpTmp = (PCHAR)strstr( lpKey, "\\");
-		
 		strncpy(lpMainKey, lpKey, (size_t)(lpTmp - lpKey));
+
+		//Registry Subkey
 		lpKey = lpTmp + sizeof("\\");
 		printf("Main Key: %s \n\n",lpMainKey);
 		
 		//Registry Monitor Threads
-		
 		strcpy(pRegKey[iThread]->stlpMainKey, lpMainKey);
 		strcpy(pRegKey[iThread]->stlpKey, lpKey);
 		
