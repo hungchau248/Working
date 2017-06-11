@@ -49,8 +49,15 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
    
 	while(1){
 		printf("\n===> Monitoring Key: %s\\%s\n",achMainKey, achSubKey);
-		// Open a key.
-		lErrorCode = RegOpenKeyExA(hMainKey, achSubKey, 0, KEY_NOTIFY|KEY_READ|KEY_QUERY_VALUE, &hKey);
+		// Open and read specified registry key.
+		lErrorCode = RegOpenKeyExA(hMainKey, 
+			achSubKey, 
+			0, 
+			KEY_NOTIFY
+			|KEY_READ
+			|KEY_QUERY_VALUE, 
+			&hKey);
+
 		if (lErrorCode != ERROR_SUCCESS)
 		{
 			printf("Error in RegOpenKeyEx (%d).\n", lErrorCode);
@@ -61,18 +68,31 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 		memset(lpLastValueName, 0, 16383);
 
 		//Snapshot Registry Before Change
-		RegQuery(hKey, &nSubKeys, &nValues, FALSE, achMainKey, achSubKey, lpLastSubkeyName, lpLastValueName);
-		_tprintf(L"Last SubKey Debug: %s\n", lpLastSubkeyName); //Debug
-		_tprintf(L"Last Value Debug: %s\n", lpLastValueName); //Debug
+		RegQuery(
+			//Handle to registry key which is being monitored
+			hKey,
+			//The number of current subkey that will be returned.
+			&nSubKeys,
+			//The number of current value that will be returned
+			&nValues,
+			//Indicate whether there is any change happened
+			FALSE,				
+			achMainKey, 
+			achSubKey,
+			//Name of last subkey in subkey chain
+			lpLastSubkeyName,
+			//Name of last value in value chain
+			lpLastValueName		
+		);
 
 	    // Create an event.
-	    hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-	    if (hEvent == NULL)
-	    {
-	      printf("Error in CreateEvent (%d).\n", GetLastError());
-	      return 1;
-	    }
-	
+		hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+		if (hEvent == NULL)
+		{
+			printf("Error in CreateEvent (%d).\n", GetLastError());
+			return 1;
+		}
+		
 		// Watch the registry key for a change of value.
 		lErrorCode 
 			= RegNotifyChangeKeyValue(hKey, 
@@ -81,23 +101,33 @@ int WINAPI RegMonitor(LPVOID lpRegKey)
 			hEvent, 
 			TRUE);
 
-	   if (lErrorCode != ERROR_SUCCESS)
-	   {
-	      printf("Error in RegNotifyChangeKeyValue (%d).\n", lErrorCode);
-	      return 1;
-	   }
+		if (lErrorCode != ERROR_SUCCESS)
+		{
+			printf("Error in RegNotifyChangeKeyValue (%d).\n", lErrorCode);
+			return 1;
+		}
 	
-	   // Wait for an event to occur.
+		// Wait for an event to occur.
 		printf("Waiting for a change in the specified key...\n");
 		if (WaitForSingleObject(hEvent, INFINITE) == WAIT_FAILED)
 		{
-		    printf("Error in WaitForSingleObject (%d).\n", GetLastError());
-		    return 1;
+			printf("Error in WaitForSingleObject (%d).\n", GetLastError());
+			return 1;
 		}
 		else printf("\nChange has occurred.\n");
 		
-		//Snapshot Registry After Change
-		RegQuery(hKey, &nSubKeys, &nValues, TRUE, achMainKey, achSubKey, lpLastSubkeyName, lpLastValueName);
+		//Snapshot Registry in case event occurs 
+		RegQuery(hKey, 
+			&nSubKeys, 
+			&nValues,
+			// This value is now set to TRUE
+			// Indicating there was change happened
+			TRUE, 
+			achMainKey, 
+			achSubKey, 
+			lpLastSubkeyName, 
+			lpLastValueName
+		);
 	
 	   // Close the key.
 	   lErrorCode = RegCloseKey(hKey);

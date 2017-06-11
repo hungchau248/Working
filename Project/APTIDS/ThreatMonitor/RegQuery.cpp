@@ -103,11 +103,11 @@ int WINAPI RegQuery(HKEY hKey,
     
     if (cSubKeys > 0)
     {
+		_tprintf(TEXT("\nNumber of subkeys: %d\n"), cSubKeys);
+
     	int nCount = 0;
-    	
-        _tprintf(TEXT( "\nNumber of subkeys: %d\n"), cSubKeys);
         
-		if((*nSubKeys < cSubKeys) && aft){
+		if(aft && (*nSubKeys < cSubKeys)){
 			nCount = (cSubKeys - *nSubKeys);
 		
 		}
@@ -117,8 +117,8 @@ int WINAPI RegQuery(HKEY hKey,
         { 
             cbName = MAX_KEY_LENGTH;
             retCode = RegEnumKeyEx(hKey, i,
-                     achKey, 
-                     &cbName, 
+                     achKey,	// the current querying subkey name
+                     &cbName,	// size of subkey name
                      NULL, 
                      NULL, 
                      NULL, 
@@ -128,7 +128,6 @@ int WINAPI RegQuery(HKEY hKey,
                 _tprintf(TEXT("(%d) %s\n"), i+1, achKey);
 				if ((cSubKeys - 1 == i) && !aft && !i) {
 					wcscpy(lpLastSubkeyName, achKey);
-					_tprintf(L"Last SubKey: %s\n", lpLastSubkeyName);
 				}
 				
 
@@ -149,6 +148,8 @@ int WINAPI RegQuery(HKEY hKey,
 					return 0;
 				}
 				else if ((cSubKeys - 1 == i) && aft && (nCount == 0) && (cSubKeys > 0)) {
+					//If the name of the subkey in the last position is different
+					//from the previous query
 					if (wcscmp(lpLastSubkeyName, achKey)) {
 						getDateTime(NULL, wchTime);
 						_tprintf(L"DEBUG TIME: %s\n", wchTime);
@@ -169,7 +170,9 @@ int WINAPI RegQuery(HKEY hKey,
             }
         }
     } 
- 	*nSubKeys = cSubKeys;
+
+ 	if(!aft)	
+		*nSubKeys = cSubKeys;
 
 	if (aft && (*nValues > cValues)) {
 		return 0;
@@ -178,14 +181,14 @@ int WINAPI RegQuery(HKEY hKey,
     // Enumerate the key values. 
     if (cValues) 
     {
-    	int nCount = 0;
     	BYTE lpValueData[MAX_VALUE_LEN];
 		DWORD cbValueData = MAX_VALUE_LEN;
     	DWORD cbValueType;
     	BYTE lpValueType[100]; 
     	
         printf( "\nNumber of values: %d\n\n", cValues);
-        
+
+		int nCount = 0;
         if((*nValues < cValues) && aft){
         	nCount = cValues - *nValues;
 		}
@@ -195,15 +198,15 @@ int WINAPI RegQuery(HKEY hKey,
             cchValue = MAX_VALUE_NAME; 
             achValue[0] = '\0'; 
             retCode = RegEnumValue(hKey, i, 
-                achValue, 
-                &cchValue, 
+                achValue,  // the return value name
+                &cchValue, // value name's size
                 NULL, 
                 NULL,
                 NULL,
                 NULL);
  
             if (retCode == ERROR_SUCCESS) 
-            { 
+            { // listing value for monitor and debug
                 memset(lpValueData, 0, MAX_VALUE_LEN);
 				retCode = RegQueryValueEx(hKey, achValue, NULL, &cbValueType, lpValueData, &cbValueData);
 				if (retCode == ERROR_SUCCESS){
@@ -257,6 +260,9 @@ int WINAPI RegQuery(HKEY hKey,
             } 
         }
     }
+
+	if(!aft)	
 		*nValues = cValues;
+
     return 0;
 }

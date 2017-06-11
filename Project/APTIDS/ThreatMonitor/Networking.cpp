@@ -53,8 +53,6 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 		return 1;
 	}
 
-	// Debug
-	printf("Debug Info file: %s\n", pInfoBuffer);
 
 	// Getting Computer Name 
 	pComputerName = ParseData(pInfoBuffer, "<ComputerName>");
@@ -63,8 +61,6 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 		return 1;
 	}
 
-	// Debug
-	printf("Debug Computer Name:%s \n", pComputerName);
 
 	// Getting Windows Version
 
@@ -73,9 +69,6 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 		printf("Windows Version was not set\n");
 		return 1;
 	}
-
-	// Debug
-	printf("Debug WindowsVersion:%s \n", pWindowsVersion);
 
 	// CONNECTING TO SERVER FOR SENDING LOG
 	WSADATA wsaData;
@@ -165,7 +158,14 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 
 	switch (dwLogType) {
 	case LOG_TYPE_REGISTRY:
-		hRegFile = CreateFileW(L"Logs/tmpRegistry.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+		hRegFile = CreateFileW(
+			L"Logs/tmpRegistry.log", 
+			GENERIC_READ, 
+			FILE_SHARE_READ, 
+			NULL, 
+			OPEN_EXISTING, 
+			0, 
+			NULL);
 		dwErrorCode = GetLastError();
 		if (dwErrorCode == ERROR_SUCCESS) {
 			ReadFile(hRegFile, lpRegBuffer, MAX_BUFFER_LEN, &dwRegByteRead, 0);
@@ -176,9 +176,26 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 
 		//Start sending Log
 		if (dwRegByteRead > 0) {
-			dwByteNeeded = WideCharToMultiByte(CP_UTF8, 0, lpRegBuffer, -1, pRegBuffer, 0, NULL, NULL);
+			dwByteNeeded = WideCharToMultiByte(
+				CP_UTF8, 
+				0, 
+				lpRegBuffer, 
+				-1, 
+				pRegBuffer, 
+				0, 
+				NULL, 
+				NULL);
+
 			pRegBuffer = (LPSTR)calloc(dwByteNeeded, 1);
-			WideCharToMultiByte(CP_UTF8, 0, lpRegBuffer, -1, pRegBuffer, dwByteNeeded, NULL, NULL);
+			WideCharToMultiByte(
+				CP_UTF8, 
+				0, 
+				lpRegBuffer, 
+				-1, 
+				pRegBuffer, 
+				dwByteNeeded, 
+				NULL, 
+				NULL);
 			printf("Sending Registry Log to Server: %s \n", pRegBuffer);
 			send(ConnectSocket, (LPSTR)pRegBuffer, dwByteNeeded, 0);
 		}
@@ -186,7 +203,14 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 		break;
 
 	case LOG_TYPE_SERVICE:
-		hSvcFile = CreateFileW(L"Logs/tmpService.log", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+		hSvcFile = CreateFileW(
+			L"Logs/tmpService.log", 
+			GENERIC_READ, 
+			FILE_SHARE_READ, 
+			NULL, 
+			OPEN_EXISTING, 
+			0, 
+			NULL);
 		dwErrorCode = GetLastError();
 		if (dwErrorCode == ERROR_SUCCESS) {
 			ReadFile(hSvcFile, lpSvcBuffer, MAX_BUFFER_LEN, &dwSvcByteRead, 0);
@@ -197,9 +221,24 @@ DWORD WINAPI SendLogToServer(PCHAR pServerIP, DWORD dwPort, DWORD dwLogType) {
 
 		//Start sending Log
 		if (dwSvcByteRead > 0) {
-			dwByteNeeded = WideCharToMultiByte(CP_UTF8, 0, lpSvcBuffer, -1, pSvcBuffer, 0, NULL, NULL);
+			dwByteNeeded = WideCharToMultiByte(
+				CP_UTF8, 
+				0, 
+				lpSvcBuffer, 
+				-1, 
+				pSvcBuffer, 
+				0, 
+				NULL, 
+				NULL);
 			pSvcBuffer = (LPSTR)calloc(dwByteNeeded, 1);
-			WideCharToMultiByte(CP_UTF8, 0, lpSvcBuffer, -1, pSvcBuffer, dwByteNeeded, NULL, NULL);
+			WideCharToMultiByte(CP_UTF8, 
+				0, 
+				lpSvcBuffer, 
+				-1, 
+				pSvcBuffer, 
+				dwByteNeeded, 
+				NULL, 
+				NULL);
 			printf("%d\n", dwByteNeeded); //Debut
 			printf("Sending Service Log to Server: %s \n", pSvcBuffer);
 			send(ConnectSocket, (LPSTR)pSvcBuffer, dwByteNeeded, 0);

@@ -46,7 +46,9 @@ VOID CALLBACK NotifyCallback(
 	LPWSTR wchLogBuffer,
 		wchTime;
 	PSERVICE_NOTIFYW notifyBuffer = (PSERVICE_NOTIFYW)pParameter;
-	struct CALLBACK_CONTEXT* pstCallbackContext = (struct CALLBACK_CONTEXT *) notifyBuffer->pContext;
+
+	struct CALLBACK_CONTEXT* pstCallbackContext 
+		= (struct CALLBACK_CONTEXT *) notifyBuffer->pContext;
 
 	wchLogBuffer = (LPWSTR) calloc (MAX_BUFFER_LEN, 1);
 	wchTime = (LPWSTR)calloc(MAX_BUFFER_LEN, 1);
@@ -96,7 +98,10 @@ DWORD WINAPI SvcChangeNotify(){
 
 	SECURITY_ATTRIBUTES secAttribute;
 	hHeap = HeapCreate(0, sizeof(struct CALLBACK_CONTEXT), 0);
-	struct CALLBACK_CONTEXT * pstCallbackContext = (struct CALLBACK_CONTEXT*) HeapAlloc(hHeap, 0, sizeof(struct CALLBACK_CONTEXT));
+	struct CALLBACK_CONTEXT * pstCallbackContext 
+		= (struct CALLBACK_CONTEXT*) HeapAlloc(hHeap, 
+			0, 
+			sizeof(struct CALLBACK_CONTEXT));
 
 	pstCallbackContext->wchLogBuffer = (LPWSTR)calloc(MAX_BUFFER_LEN, 1);
 
@@ -119,7 +124,12 @@ DWORD WINAPI SvcChangeNotify(){
 	secAttribute.lpSecurityDescriptor = NULL;
 	secAttribute.bInheritHandle = FALSE;
 
-	notifyEventHandle = CreateEventEx(&secAttribute, NULL, CREATE_EVENT_INITIAL_SET, EVENT_ALL_ACCESS);
+	notifyEventHandle 
+		= CreateEventEx(&secAttribute, 
+			NULL, 
+			CREATE_EVENT_INITIAL_SET, 
+			EVENT_ALL_ACCESS
+		);
 
 	if (notifyEventHandle == NULL){
 		EvtClose(subscriptionHandle);
@@ -144,10 +154,10 @@ DWORD WINAPI SvcChangeNotify(){
 			notifyBuffer.pContext = (struct CALLBACK_CONTEXT*) pstCallbackContext;
 
 			dwResult = NotifyServiceStatusChangeW(
-							scManagerHandle, 
-							SERVICE_NOTIFY_CREATED |
-							SERVICE_NOTIFY_DELETED ,
-							&notifyBuffer);
+					scManagerHandle, 
+					SERVICE_NOTIFY_CREATED |
+					SERVICE_NOTIFY_DELETED ,
+					&notifyBuffer);
 
 			if (dwResult == ERROR_SUCCESS) {
 				// Wait for Notify Callback function
@@ -155,7 +165,7 @@ DWORD WINAPI SvcChangeNotify(){
 					
 			}
 			else if (dwResult == ERROR_SERVICE_NOTIFY_CLIENT_LAGGING) {
-				// Service lag
+				// In case SCM lags
 				_tprintf(L"Client Lagging !\n");
 				break;
 			}
@@ -175,3 +185,4 @@ DWORD WINAPI SvcChangeNotify(){
 
 	return 0;
 }
+

@@ -46,10 +46,17 @@ DWORD WINAPI WriteLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
 			wchLogFile = L"Logs/Services.log";
 			wchLogTmpFile = L"Logs/tmpService.Log";
 			break;
-
 	}
+
 	//OPEN AND WRITE TO MAIN LOG FILE
-	hFile = CreateFileW(wchLogFile, GENERIC_WRITE | FILE_APPEND_DATA, FILE_SHARE_READ, 0, OPEN_ALWAYS, 0, 0);
+	hFile = CreateFileW(wchLogFile, 
+		GENERIC_WRITE | FILE_APPEND_DATA, 
+		FILE_SHARE_READ, 
+		0, 
+		OPEN_ALWAYS, 
+		0, 
+		0);
+
 	DWORD dwErrorCode;
 	dwErrorCode = GetLastError();
 
@@ -63,9 +70,11 @@ DWORD WINAPI WriteLog(DWORD dwLogType, LPWSTR wchLogBuffer) {
 	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, lpOverLapped);
 	CloseHandle(hFile);
 
+	//OPEN AND WRITE TO TEMP LOG FILE
 	hFile = CreateFileW(wchLogTmpFile, GENERIC_WRITE, FILE_SHARE_READ, 0, CREATE_ALWAYS, 0, 0);
 	WriteFile(hFile, (LPWSTR)wchLogBuffer, dwByteNeeded, NULL, 0);
 	CloseHandle(hFile);
+
 	//Write log to Server
 	Networking(dwLogType);
 
