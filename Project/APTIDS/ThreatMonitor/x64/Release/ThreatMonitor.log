@@ -1,4 +1,32 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (ThreatMonitor.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  APTIDS.cpp
+  GetSystemInfo.cpp
+GetSystemInfo.cpp(29): warning C4551: function call missing argument list
+GetSystemInfo.cpp(33): warning C4551: function call missing argument list
+GetSystemInfo.cpp(50): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+GetSystemInfo.cpp(55): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+GetSystemInfo.cpp(60): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+  Logging.cpp
+Logging.cpp(65): warning C4267: 'initializing': conversion from 'size_t' to 'DWORD', possible loss of data
+  Networking.cpp
+Networking.cpp(95): warning C4244: '=': conversion from 'DWORD' to 'USHORT', possible loss of data
+Networking.cpp(108): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+Networking.cpp(110): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+Networking.cpp(131): warning C4244: '=': conversion from 'DWORD' to 'USHORT', possible loss of data
+  RegMonitor.cpp
+RegMonitor.cpp(187): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+RegMonitor.cpp(236): warning C4018: '<': signed/unsigned mismatch
+  RegQuery.cpp
+RegQuery.cpp(94): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+RegQuery.cpp(100): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(110): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(177): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(192): warning C4018: '<': signed/unsigned mismatch
+RegQuery.cpp(224): warning C4018: '>': signed/unsigned mismatch
+RegQuery.cpp(216): warning C4477: 'wprintf' : format string '%s' requires an argument of type 'wchar_t *', but variadic argument 1 has type 'BYTE *'
+  RegQuery.cpp(216): note: consider using '%hs' in the format string
+  RegQuery.cpp(216): note: consider using '%Ts' in the format string
+  RegQuery.cpp(216): note: this warning is based on non-standard semantics used by Visual C++
   SvcChangeNotify.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\shared\ntstatus.h(66): warning C4005: 'STATUS_WAIT_0': macro redefinition
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\um\winnt.h(2337): note: see previous definition of 'STATUS_WAIT_0'
@@ -120,9 +148,10 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\shared\ntstatus.h(13
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\um\winnt.h(2396): note: see previous definition of 'STATUS_SXS_INVALID_DEACTIVATION'
 SvcChangeNotify.cpp(17): warning C4091: 'typedef ': ignored on left of 'CALLBACK_CONTEXT' when no variable is declared
   Generating code
-  2 of 36 functions ( 5.6%) were compiled, the rest were copied from previous compilation.
+c:\users\hung\desktop\khoa luan\working\project\aptids\threatmonitor\networking.cpp(331): warning C4715: 'Networking': not all control paths return a value
+  5 of 36 functions (13.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\APTIDS\x64\Release\APTIDS.exe
   ThreatMonitor.vcxproj -> C:\Users\Hung\Desktop\Khoa Luan\Working\Project\APTIDS\x64\Release\APTIDS.pdb (Full PDB)
