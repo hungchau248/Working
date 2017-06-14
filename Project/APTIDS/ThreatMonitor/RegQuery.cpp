@@ -239,7 +239,7 @@ int WINAPI RegQuery(HKEY hKey,
 					}
 					else if((cValues - 1 == i) && aft && (*nValues == cValues) ){
 						_tprintf(L"Last Value: %s\n", lpLastValueName);
-						if (wcscmp(lpLastValueName, achValue)) {
+						if (wcscmp(lpLastValueName, achValue) != 0) {
 							getDateTime(NULL, wchTime);
 							wcscpy(wchLogBuffer, wchTime);
 							wcscat(wchLogBuffer, L"[ALERT] ");
