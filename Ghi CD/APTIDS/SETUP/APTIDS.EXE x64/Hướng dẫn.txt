@@ -1,0 +1,2 @@
+1. Ch?y file th?c thi vc_redist.x64.exe
+2. Ch?y file th?c thi APTIDS.exe d??i quy?n administrator

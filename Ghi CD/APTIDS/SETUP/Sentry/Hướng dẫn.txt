@@ -1,0 +1,6 @@
+?? s? d?ng module Sentry trên C&C.
+??u tiên ta c?n ph?i logon vào máy tr?m t?i server thông qua C&C, sau ?ó listen ssh v?i host local ?? ?ón reverse SSH t? raspberry pi ??t ? máy tr?m
+trên raspberry pi ta s? s? d?ng wmiexec.py ???c tích h?p trong gói impacket ?? có th? remote SMB thông qua máy pentest windows và t?o m?t link liên k?t v? C&C
+t? C&C ta s? th?c hi?n l?nh powershell-import ?? upload Sentry Toolkit vô vùng nh? c?a process powershell trên máy test
+
+Khi ?ã import xong ta ch? c?n gõ Sentry trong c?a s? Powershell ?? ch?y module ho?c tên các module khác.

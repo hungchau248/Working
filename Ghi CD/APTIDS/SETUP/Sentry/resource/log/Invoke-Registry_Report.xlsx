@@ -1,0 +1,78 @@
+element	Name	ExecuteFile	ExecuteFile	DigitalSignature
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	WindowsDefender	C:\Program Files\Windows Defender\MSASCuiL.exe	C:\Program Files\Windows Defender\MSASCuiL.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	Apoint	C:\Program Files\DellTPad\Apoint.exe	C:\Program Files\DellTPad\Apoint.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	NvBackend	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	PSPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	PSParentPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	PSChildName	Run	Run	
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	PSDrive	HKL	HKL	
+hklm:\Software\Microsoft\Windows\CurrentVersion\Run	PSProvider	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	WindowsDefender	C:\Program Files\Windows Defender\MSASCuiL.exe	C:\Program Files\Windows Defender\MSASCuiL.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	Apoint	C:\Program Files\DellTPad\Apoint.exe	C:\Program Files\DellTPad\Apoint.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	NvBackend	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSParentPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSChildName	Run	Run	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSDrive	HKL	HKL	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSProvider	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	WindowsDefender	C:\Program Files\Windows Defender\MSASCuiL.exe	C:\Program Files\Windows Defender\MSASCuiL.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	Apoint	C:\Program Files\DellTPad\Apoint.exe	C:\Program Files\DellTPad\Apoint.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	NvBackend	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSParentPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSChildName	Run	Run	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSDrive	HKL	HKL	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSProvider	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	WindowsDefender	C:\Program Files\Windows Defender\MSASCuiL.exe	C:\Program Files\Windows Defender\MSASCuiL.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	Apoint	C:\Program Files\DellTPad\Apoint.exe	C:\Program Files\DellTPad\Apoint.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	NvBackend	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	Valid
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSParentPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSChildName	Run	Run	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSDrive	HKL	HKL	
+hklm:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSProvider	Mic	Mic	
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	WindowsDefender	C:\Program Files\Windows Defender\MSASCuiL.exe	C:\Program Files\Windows Defender\MSASCuiL.exe	Valid
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	Apoint	C:\Program Files\DellTPad\Apoint.exe	C:\Program Files\DellTPad\Apoint.exe	Valid
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	NvBackend	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	C:\Program Files (x86)\NVIDIA Corporation\Update Core\NvBackend.exe	Valid
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	PSPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	PSParentPath	Mic	Mic	
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	PSChildName	Run	Run	
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	PSDrive	HKL	HKL	
+hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit	PSProvider	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	Lingoes	C:\Users\Binh1\AppData\Local\Lingoes\Translator\lingoes-us\Lingoes.exe	C:\Users\Binh1\AppData\Local\Lingoes\Translator\lingoes-us\Lingoes.exe	NotSigned
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	Lync	C:\Program Files (x86)\Microsoft Office\root\Office16\lync.exe	C:\Program Files (x86)\Microsoft Office\root\Office16\lync.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	UniKey	C:\Users\Binh1\unikey40RC2-1101-win64\UniKeyNT.exe	C:\Users\Binh1\unikey40RC2-1101-win64\UniKeyNT.exe	NotSigned
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	CCleaner Monitoring	C:\Program Files\CCleaner\CCleaner64.exe	C:\Program Files\CCleaner\CCleaner64.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	Skype	C:\Program Files (x86)\Skype\Phone\Skype.exe	C:\Program Files (x86)\Skype\Phone\Skype.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	Steam	C:\Program Files (x86)\Steam\steam.exe	C:\Program Files (x86)\Steam\steam.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	PSPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	PSParentPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	PSChildName	Run	Run	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	PSDrive	HKC	HKC	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\Run	PSProvider	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunOnce	Uninstall C:\Users\Binh1\AppData\Local\Microsoft\OneDrive\17.3.6390.0509_2\amd64	C:\Windows\system32\cmd.exe	C:\Windows\system32\cmd.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSParentPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSChildName	Run	Run	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSDrive	HKC	HKC	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunOnce	PSProvider	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServices	Uninstall C:\Users\Binh1\AppData\Local\Microsoft\OneDrive\17.3.6390.0509_2\amd64	C:\Windows\system32\cmd.exe	C:\Windows\system32\cmd.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSParentPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSChildName	Run	Run	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSDrive	HKC	HKC	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServices	PSProvider	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	Uninstall C:\Users\Binh1\AppData\Local\Microsoft\OneDrive\17.3.6390.0509_2\amd64	C:\Windows\system32\cmd.exe	C:\Windows\system32\cmd.exe	Valid
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSParentPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSChildName	Run	Run	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSDrive	HKC	HKC	
+hkcu:\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce	PSProvider	Mic	Mic	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	Device	Mic	Mic	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	IsMRUEstablished	Mic	Mic	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	LegacyDefaultPrinterMode	Mic	Mic	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	PSPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	PSParentPath	Mic	Mic	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	PSChildName	Win	Win	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	PSDrive	HKC	HKC	
+hkcu:\Software\Microsoft\Windows NT\CurrentVersion\Windows	PSProvider	Mic	Mic	

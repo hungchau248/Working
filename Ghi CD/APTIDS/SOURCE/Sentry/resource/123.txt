@@ -1,0 +1,158 @@
+<NotepadPlus>
+    <Project name="APT">
+        <Folder name="log">
+            <File name="log\HashFile_Check.log" />
+            <File name="log\HashFile_New.log" />
+            <File name="log\Invoke-Brute_Report.xlsx" />
+            <File name="log\Invoke-EventLog_Report.xlsx" />
+            <File name="log\Invoke-File_Report.xlsx" />
+            <File name="log\Invoke-Port_Report.xlsx" />
+            <File name="log\Invoke-Process_Report.xlsx" />
+            <File name="log\Invoke-Registry_Report.xlsx" />
+            <File name="log\Invoke-ScheduledTask_Report.xlsx" />
+            <File name="log\Invoke-Service_Analysis.xlsx" />
+            <File name="log\Invoke-Service_Report.xlsx" />
+            <File name="log\ScheduledTask_Analysis.xlsx" />
+        </Folder>
+        <Folder name="tmp" />
+        <File name="Invoke-Brute.psm1" />
+        <File name="Invoke-EventLog.psm1" />
+        <File name="Invoke-File.psm1" />
+        <File name="Invoke-MemoryDump.psm1" />
+        <File name="Invoke-NetworkRecon.psm1" />
+        <File name="Invoke-Port.psm1" />
+        <File name="Invoke-Process.psm1" />
+        <File name="Invoke-Registry.psm1" />
+        <File name="Invoke-ScheduledTask.psm1" />
+        <File name="Invoke-Service.psm1" />
+        <File name="Invoke-Trap.psm1" />
+        <File name="Invoke-TrustHash.psm1" />
+        <File name="Invoke-Virustotal.psm1" />
+        <File name="Invoke-Webshell.psm1" />
+        <File name="NULL" />
+        <File name="Sentry.ps1" />
+        <File name="tmp.ps1" />
+        <File name="tmp1.ps1" />
+        <File name="tmp2.ps1" />
+    </Project>
+    <Project name="Himura">
+        <Folder name="Data">
+            <Folder name="HTML">
+                <Folder name="style">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\computer.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\document.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\folder-horizontal.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\info.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\spoiler.js" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\toggle-small-expand.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\toggle-small.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\user.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\user1.png" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\style\_styles.css" />
+                </Folder>
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\HTML\Example.html" />
+            </Folder>
+            <Folder name="Third-Party">
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\Get-GPPPassword.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\Get-MSSQLCredentialPasswords.psm1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\Get-MSSQLLinkPasswords.psm1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\Invoke-MS16032.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\Invoke-Tater.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\nbt.exe" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\PowerView.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Third-Party\rar.exe" />
+            </Folder>
+            <Folder name="Trick">
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Trick\Trick.ps1" />
+            </Folder>
+            <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Executables.txt" />
+            <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Data\Group.txt" />
+        </Folder>
+        <Folder name="Powershell">
+            <Folder name="Exploit">
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Exploit\Exploit-JBoss.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Exploit\Exploit-Jenkins.ps1" />
+            </Folder>
+            <Folder name="Lateral">
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Lateral\MSSQL.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Lateral\PassTheHash.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Lateral\Psexec.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Lateral\Wmic.ps1" />
+            </Folder>
+            <Folder name="Persistence">
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Sched_Command.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Sched_File.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Sched_Fileless.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Sched_Msbuild.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Serv_Command.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Serv_File.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Serv_Filess.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\Persistence_Serv_Msbuild.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\U_MasterBVNB.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Persistence\U_MasterTH.ps1" />
+            </Folder>
+            <Folder name="Privilege">
+                <Folder name="CVE-2016-7255">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\CVE-2016-7255\CVE-2016-7255.exe" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\CVE-2016-7255\Readme.txt" />
+                </Folder>
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\Invoke-AppPathBypass.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\Invoke-EventVwrBypass.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\Invoke-SDCLTBypass.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\PowerUp.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\Privilege.ps1" />
+                <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Privilege\README.MD" />
+            </Folder>
+            <Folder name="Recon">
+                <Folder name="AD">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\AD\ActiveDirectory.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\AD\MailExchange.ps1" />
+                </Folder>
+                <Folder name="Browser">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\360cse.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\360cse_x64.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\360se.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\360se_x64.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\Browser.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\Chrome.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\Chrome_x64.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\CocCoc.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\CocCoc_x64.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\Firefox.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\IE.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\QQ.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Browser\QQ_x64.ps1" />
+                </Folder>
+                <Folder name="Bruter">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteFTP.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteHTTP.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteMSSQL.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteMySQL.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteOracle.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteRDP.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteSMB.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteSSH.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Bruter\BruteVNC.ps1" />
+                </Folder>
+                <Folder name="Credential">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\Get-GPPPassword.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\GoldenTicket.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\HashDump.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\Invoke-Mimikittenz.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\NtdsHashDump.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\U_LsaHashDump.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Credential\U_RdpPassword.ps1" />
+                </Folder>
+                <Folder name="Local">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Local\Recon.ps1" />
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Local\Utilities.ps1" />
+                </Folder>
+                <Folder name="Scanner">
+                    <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Powershell\Recon\Scanner\Scanner.ps1" />
+                </Folder>
+            </Folder>
+        </Folder>
+        <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\Himura.cna" />
+        <File name="C:\Users\Binh1\Desktop\Himura-master-d4fa4aa3dffc41f498c48961f0af83c56f0143fd\README.MD" />
+    </Project>
+</NotepadPlus>
